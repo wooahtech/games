@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>블라인드 오목</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold text-center mb-8">블라인드 오목</h1>
+
+      <div class="max-w-md mx-auto bg-white rounded-xl shadow-md p-6">
+        <div id="modeSelect" class="mb-6">
+          <h2 class="text-xl font-bold mb-4">게임 모드 선택</h2>
+          <div class="flex gap-2">
+            <button
+              id="pvpMode"
+              class="flex-1 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            >
+              2인 대전
+            </button>
+            <button
+              id="aiMode"
+              class="flex-1 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+            >
+              AI와 대결
+            </button>
+          </div>
+        </div>
+
+        <div id="gameUI" class="hidden">
+          <div class="mb-4">
+            <p id="playerInfo" class="text-lg font-semibold text-left">
+              현재 플레이어: <span id="currentPlayer">User1 (흑)</span>
+            </p>
+            <p class="text-lg">남은 시간: <span id="timer">2:00</span></p>
+          </div>
+
+          <div id="message" class="mt-4 text-red-500 whitespace-pre-line"></div>
+
+          <button
+            id="endGame"
+            class="mt-4 w-full bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+          >
+            게임 포기
+          </button>
+
+          <button
+            id="restartGame"
+            class="mt-2 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 hidden"
+          >
+            다시 하기
+          </button>
+          <button
+            id="replayGame"
+            class="mt-2 w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 hidden"
+          >
+            리플레이
+          </button>
+          <button
+            id="pauseReplay"
+            class="mt-2 w-full bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 hidden"
+          >
+            일시정지
+          </button>
+
+          <div class="mt-8">
+            <div class="flex">
+              <div class="w-8"></div>
+              <div class="grid grid-cols-7 gap-1 flex-1">
+                <div class="cell-label">1</div>
+                <div class="cell-label">2</div>
+                <div class="cell-label">3</div>
+                <div class="cell-label">4</div>
+                <div class="cell-label">5</div>
+                <div class="cell-label">6</div>
+                <div class="cell-label">7</div>
+              </div>
+            </div>
+
+            <div class="flex">
+              <div class="flex flex-col w-8">
+                <div class="cell-label">A</div>
+                <div class="cell-label">B</div>
+                <div class="cell-label">C</div>
+                <div class="cell-label">D</div>
+                <div class="cell-label">E</div>
+                <div class="cell-label">F</div>
+                <div class="cell-label">G</div>
+                <div class="cell-label">H</div>
+              </div>
+              <div id="gameBoard" class="grid grid-cols-7 gap-1 flex-1">
+                <!-- JavaScript로 보드 생성 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
