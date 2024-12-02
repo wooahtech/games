@@ -97,7 +97,16 @@ class BlindOmok {
       this.updateTimerDisplay();
 
       if (this.timeLeft <= 0) {
-        this.endGame();
+        // 시간 초과 시 턴만 변경
+        this.timeLeft = 120;
+        this.currentPlayer = this.currentPlayer === 1 ? 2 : 1;
+        this.updateCurrentPlayerDisplay();
+        this.showMessage("시간 초과! 다음 플레이어의 차례입니다.");
+
+        // AI 모드에서 백의 차례가 되면 AI 턴 시작
+        if (this.isAIMode && this.currentPlayer === 2) {
+          setTimeout(() => this.makeAIMove(), 1000);
+        }
       }
     }, 1000);
   }
@@ -349,7 +358,21 @@ class BlindOmok {
 
       const row = String.fromCharCode("A".charCodeAt(0) + bestMove.row);
       const col = bestMove.col + 1;
+
+      // AI의 수를 화면에 표시
+      const cell = document.querySelector(
+        `[data-row="${bestMove.row}"][data-col="${bestMove.col}"]`
+      );
+      cell.innerHTML = '<div class="white-stone"></div>';
+
       this.showMessage(`AI가 ${row}${col}에 돌을 놓았습니다.`, 2000);
+
+      // 2초 후에 AI의 돌을 숨김
+      setTimeout(() => {
+        if (!this.gameEnded) {
+          cell.innerHTML = "";
+        }
+      }, 2000);
 
       this.makeMove(bestMove.row, bestMove.col);
     }
